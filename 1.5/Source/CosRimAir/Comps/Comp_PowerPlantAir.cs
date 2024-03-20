@@ -48,22 +48,25 @@ namespace CosRimAir
 		{ 
 			points = new List<CurvePoint>() 
 			{ 
-				new CurvePoint(0f, 0f), 
-				new CurvePoint(1f, 12),
-				new CurvePoint(1f, 32f),
-				new CurvePoint(0.25f, 42f),
-				new CurvePoint(0f, 82f)
+				new CurvePoint(0f, CosRimAirMod.settings.temperatureRange.min - 12f), 
+				new CurvePoint(1f, CosRimAirMod.settings.temperatureRange.min),
+				new CurvePoint(1f, CosRimAirMod.settings.temperatureRange.max),
+				new CurvePoint(0.25f, CosRimAirMod.settings.temperatureRange.max + 10f),
+				new CurvePoint(0f, CosRimAirMod.settings.temperatureRange.max + 50f)
 			} 
 		};
 
 		public override float DesiredPowerOutput => cachedPowerOutput;
 
-		public float PowerPercent => base.PowerOutput / 1000f;
+		public float PowerPercent => base.PowerOutput / CosRimAirMod.settings.powerOutput;
 
 		public override void PostSpawnSetup(bool respawningAfterLoad)
 		{
 			base.PostSpawnSetup(respawningAfterLoad);
 			BarSize = new Vector2(0.65f, 0.14f);
+			airPathCells = new List<IntVec3>();
+			airPathBlockedByThings = new List<Thing>();
+			airPathBlockedCells = new List<IntVec3>();
 			RecalculateBlockages();
 		}
 
@@ -92,7 +95,7 @@ namespace CosRimAir
                 }
 				float num2 = tempCurve.EvaluateInverted(parent.AmbientTemperature);
 				ticksSinceAirUpdate = 0;
-				cachedPowerOutput = 0f - Props.PowerConsumption * num * num2;
+				cachedPowerOutput = 0f - CosRimAirMod.settings.powerOutput * num * num2;
 				RecalculateBlockages();
 				if (airPathBlockedCells.Count > 0)
 				{

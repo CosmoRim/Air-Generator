@@ -66,12 +66,18 @@ namespace CosRimAir
             if (listing.ButtonText("Default Settings"))
             {
                 settings.rainfallRange = new IntRange(500, 1800);
+                settings.temperatureRange = new IntRange(12, 32);
                 settings.excludedBiomes.Clear();
                 CosRimAirStartup.SetDefaultBiomeExclusions();
             }
             listing.GapLine();
+            listing.LabelBacked("Power Output", Color.white);
+            listing.SliderLabeled("Power: " + settings.powerOutput.ToString(), settings.powerOutput, 100f, 10000f);
             listing.LabelBacked("Rainfall Values", Color.white);
             listing.IntRange(ref settings.rainfallRange, 0, 3000);
+            listing.LabelBacked("Temperature Offset (C)", Color.white);
+            listing.IntRange(ref settings.temperatureRange, -100, 100);
+            listing.Note("Temperature offset shifts the upper and lower ideal values, between the numbers set here it will be at 100% and the falloff outside it will be relative to that.", GameFont.Tiny);
             listing.LabelBacked("Biome Restriction", Color.white);
             listing.Note("The list below allows you to restrict the functionality of air generators in specified biomes. Vanilla biomes are accounted for automatically by default, in those the air generator isn't disabled completely but it's significantly less effective and reaches 20% power total.", GameFont.Tiny);
             foreach(BiomeDef biome in DefDatabase<BiomeDef>.AllDefs)
