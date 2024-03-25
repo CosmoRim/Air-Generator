@@ -2,6 +2,8 @@
 <ModMetaData>
 	<name>Air Generator</name>
 	<packageId>Neronix17.CosmoRim.AirGenerator</packageId>
+	<modIconPath IgnoreIfNoMatchingField="True">CosmoRim/ModIcon</modIconPath>
+	<url>https://www.patreon.com/neronix17</url>
 	<description>Standalone module of the CosmoRim series of mods adding a new power generation method, using moisture in the air and ambient heat.</description>
 	<author>Neronix17</author>
 	<supportedVersions>
