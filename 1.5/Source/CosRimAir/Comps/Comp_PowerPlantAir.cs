@@ -95,7 +95,7 @@ namespace CosRimAir
                 }
 				float num2 = tempCurve.EvaluateInverted(parent.AmbientTemperature);
 				ticksSinceAirUpdate = 0;
-				cachedPowerOutput = 0f - CosRimAirMod.settings.powerOutput * num * num2;
+				cachedPowerOutput = (CosRimAirMod.settings.powerOutput * num * num2);
 				RecalculateBlockages();
 				if (airPathBlockedCells.Count > 0)
 				{
