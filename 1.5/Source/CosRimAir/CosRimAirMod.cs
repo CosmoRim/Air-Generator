@@ -5,10 +5,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
+using Verse.Noise;
 
 namespace CosRimAir
 {
@@ -72,7 +74,8 @@ namespace CosRimAir
             }
             listing.GapLine();
             listing.LabelBacked("Power Output", Color.white);
-            listing.SliderLabeled("Power: " + settings.powerOutput.ToString(), settings.powerOutput, 100f, 10000f);
+            listing.AddLabeledSlider("Power: " + settings.powerOutput.ToString(), ref settings.powerOutput, 100f, 10000f, null, null, 100f);
+            //listing.SliderLabeled("Power: " + settings.powerOutput.ToString(), settings.powerOutput, 100f, 10000f);
             listing.LabelBacked("Rainfall Values", Color.white);
             listing.IntRange(ref settings.rainfallRange, 0, 3000);
             listing.LabelBacked("Temperature Offset (C)", Color.white);
