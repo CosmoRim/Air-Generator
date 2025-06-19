@@ -80,15 +80,12 @@ namespace CosRimAir
 		public override void CompTick()
 		{
 			base.CompTick();
-			if (!base.PowerOn)
-			{
-				cachedPowerOutput = 0f;
-				return;
-			}
-			ticksSinceAirUpdate++;
+			if (!base.PowerOn) { cachedPowerOutput = 0f; return; }
+            if (ModsConfig.OdysseyActive && parent.Map.Biome.inVacuum) { cachedPowerOutput = 0f; return; }
+            ticksSinceAirUpdate++;
 			if (ticksSinceAirUpdate >= updateAirEveryXTicks)
 			{
-				float num = Mathf.InverseLerp(CosRimAirMod.settings.rainfallRange.min, CosRimAirMod.settings.rainfallRange.max, parent.Map.TileInfo.rainfall);
+                float num = Mathf.InverseLerp(CosRimAirMod.settings.rainfallRange.min, CosRimAirMod.settings.rainfallRange.max, parent.Map.TileInfo.rainfall);
                 if (!CosRimAirMod.settings.excludedBiomes[parent.Map.Biome.defName])
                 {
 					num = Mathf.Min(num, 0.2f);
@@ -159,7 +156,12 @@ namespace CosRimAir
 		{
 			StringBuilder stringBuilder = new StringBuilder();
 			stringBuilder.Append(base.CompInspectStringExtra());
-			if (airPathBlockedCells.Count > 0)
+            if (ModsConfig.OdysseyActive && parent.Map.Biome.inVacuum) 
+			{
+				stringBuilder.Append("AirGenerator_CannotFunctionInVacuum".Translate());
+				return stringBuilder.ToString();
+			}
+            if (airPathBlockedCells.Count > 0)
 			{
 				stringBuilder.AppendLine();
 				Thing thing = null;
