@@ -1,0 +1,23 @@
+ManifestFileVersion: 0
+CRC: 454532571
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 6bc097c07884a43c0280485b283c34d8
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 2612ac43db082a73502ee80f2eceb73f
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 6bc097c07884a43c0280485b283c34d8
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Data/Neronix17.CosmoRim.AirGenerator/Textures/CosmoRim/Buildings/AirGenerator_Fan.png
+- Assets/Data/Neronix17.CosmoRim.AirGenerator/Textures/CosmoRim/ModIcon.png
+- Assets/Data/Neronix17.CosmoRim.AirGenerator/Textures/CosmoRim/Buildings/AirGenerator_MenuIcon.png
+- Assets/Data/Neronix17.CosmoRim.AirGenerator/Textures/CosmoRim/Buildings/AirGenerator.png
+Dependencies: []
